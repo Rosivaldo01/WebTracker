@@ -89,7 +89,7 @@ function showError(prefix, error) {
     break;
     case 'auth/weak-password': alert(prefix + '' + 'A senha precisa ter ao menos 6 caracteres!')
     break;
-    case 'auth/email-already-in-use': alert(prefix + '' + 'O e-mail ja possue uma conta!')
+    case 'auth/email-already-in-use': alert(prefix + '' + 'O e-mail ja cadastrado!')
     break;
     case 'auth/popup-closed-by-user': alert(prefix + '' + 'A tela de popup foi fechada antes da autenticação ser concluída!')
     break;
