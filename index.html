@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <title>WebTrack</title>
+  <link rel="shortcut icon" href="img/todoListFavicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <div id="app">
+
+    <!--Feedback de carregamento (Loading)-->
+    <div id="loading">
+      <img src="img/loading.gif" alt="Animação de carregamento">
+    </div>
+    <!--Logotipo do WebTrack-->
+    <div class="center">
+      <img src="img/WebTrack.png">
+
+
+      <!--Conteúdo destinado para usuarios não autenticados-->
+      <div id="auth" class="center">
+
+        <!--Formulário de autenticação-->
+        <form id="authform">
+          <h3 id="authFormTitle">Acesse sua conta para continuar</h3>
+          <label for="email">E-mail: </label>
+          <input type="email" placeholder="Informe seu email" id="email">
+
+          <label for="password">Senha: </label>
+          <input type="password" placeholder="Digite sua senha" id="password">
+
+          <button type="submit" id="submitAuthForm">Acessar</button>
+        </form>
+
+        <!--Alternar o formulário de autenticação para o cadastro de novas contas-->
+        <p id="register">Não possui uma conta?
+          <button onclick="toggleToRegister()" class="alternative">Cadastre-se aqui</button>
+        </p>
+
+        <!--Alternar o formulário de autenticação para o acesso de contas ja existetes-->
+        <p id="access" class="startHidden">Já possui uma conta?
+          <button onclick="toggleToAccess()" class="alternative">Clique aqui</button>
+        </p>
+        <!--Possibilita a redeifinição da senha -->
+        <p id="passwordReset">Esqueceu a senha?
+          <button class="alternative" onclick="sendPasswordResetEmail()">É só clicar aqui</button>
+        </p>
+
+        <!--Provedor de autenticação-->
+        <p class="googleAutentic">
+          Ou acesse usando:<br>
+          <img src="img/google.png" alt="Autenticação pelo Google" onclick="signInWithGoogle()">
+        </p>
+      </div>
+    </div>
+
+
+    <!--Conteúdo destinado para usuários autenticados-->
+    <di id="userContent" class="startHidden">
+      <hr>
+      <div id="userInfo" class="center">
+        <img id="userImg">
+        <p id="userName"></p>
+        <p id="userEmail"></p>
+        <p id="emailVerified"></p>
+        <div id="sendEmailverificatonDiv">
+          <button class="auternative" onclick="sendEmailVerification()">Verificar e-mail</button>
+        </div>
+        <button class="auternative" onclick="updateUserName()">Atualizar meu nome</button>
+        <button class="auternative" onclick="signOut()">Sair</button>
+        <button class="danger" onclick="deleUserAccout()">Excluir sua conta</button>
+      </div>
+  </div>
+  </div>
+  <!--Recursos do Firebase-->
+  <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-auth.js"></script>
+
+  <!-- Nossa programação em javaScript-->
+  <script src="js/firebase.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+
+</html>
