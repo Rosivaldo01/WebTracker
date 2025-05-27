@@ -100,5 +100,5 @@ function showError(prefix, error) {
 
 // Atributos extras de configuração de email
 var actionCodeSttings = {
-  url: 'http://127.0.0.1:5500/'
+  url: 'https://webtrack-8ff15.firebaseapp.com'
 }
