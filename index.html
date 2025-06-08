@@ -17,7 +17,7 @@
     </div>
     <!--Logotipo do WebTrack-->
     <div class="center">
-      <img src="img/WebTrack.png">
+      <!--<img src="img/WebTrack.png">-->
 
 
       <!--Conteúdo destinado para usuarios não autenticados-->
@@ -25,13 +25,14 @@
 
         <!--Formulário de autenticação-->
         <form id="authform">
+          <h2>Sistema de Rastreiro Web Tracker</h2>
           <h3 id="authFormTitle">Acesse sua conta para continuar</h3>
           <label for="email">E-mail: </label>
           <input type="email" placeholder="Informe seu email" id="email">
 
           <label for="password">Senha: </label>
           <input type="password" placeholder="Digite sua senha" id="password">
-
+          
           <button type="submit" id="submitAuthForm">Acessar</button>
         </form>
 
@@ -49,11 +50,12 @@
           <button class="alternative" onclick="sendPasswordResetEmail()">É só clicar aqui</button>
         </p>
 
-        <!--Provedor de autenticação-->
+        <!--Provedor de autenticação
         <p class="googleAutentic">
           Ou acesse usando:<br>
           <img src="img/google.png" alt="Autenticação pelo Google" onclick="signInWithGoogle()">
         </p>
+        -->
       </div>
     </div>
 
@@ -71,18 +73,43 @@
         </div>
         <button class="auternative" onclick="updateUserName()">Atualizar meu nome</button>
         <button class="auternative" onclick="signOut()">Sair</button>
-        <button class="danger" onclick="deleUserAccout()">Excluir sua conta</button>
+        <button class="danger" onclick="deleUserAccout()">Desativar Usuário</button>
       </div>
+
+      <hr>
+      <!--Lista de tarefas do usuário-->
+      <div id="webLIst">
+        <h3 id="webCount">Carregando Informações...</h3>
+        <ul id="ulWebList"></ul>
+      </div>
+
+      <hr>
+      <!--Formulário de Registo BD-->
+      <div class="center">
+        <form id="webForm">
+          <h3 id="webFormTitle">Informações do Usuário</h3>
+          <label for="name">Usuários: </label>
+          <input type="text" id="name" placeholder="Informe o Usuário">
+          <!--<button type="submit" id="submitwebForm">Cadastrar Usuário(s)</button>-->
+          <label for="registration">Matrícula: </label>
+          <input type="text" id="registration" placeholder="Digite sua matricula">
+          <label for="task">Tarefas: </label>
+          <input type="text" id="task" placeholder="Informe a tarefa">
+          <button type="submit" id="submitwebFormTask">Registrar Usuário</button>
+        </form>
+    </di>
   </div>
   </div>
   <!--Recursos do Firebase-->
   <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-database.js"></script>
 
   <!-- Nossa programação em javaScript-->
   <script src="js/firebase.js"></script>
   <script src="js/utils.js"></script>
   <script src="js/auth.js"></script>
+  <script src="js/webRegistration.js"></script>
 </body>
 
 </html>

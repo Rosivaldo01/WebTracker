@@ -3,6 +3,7 @@ body {
   font-family: Tahoma;
   display: flex;
   height: 96vh;
+  background-color: rgb(229, 241, 205);
 }
 
 #app {
@@ -11,6 +12,7 @@ body {
   box-shadow: 4px 4px 20px #888;
   padding: 20px;
   border-radius: 20px;
+  background-color: rgb(160, 252, 12);
 }
 
 .center {
@@ -19,6 +21,10 @@ body {
 
 .startHidden {
   display: none;
+}
+
+h2 {
+  font-weight: normal;
 }
 
 h3 {
@@ -38,7 +44,7 @@ input {
 }
 
 button {
-  background-color: #4c4;
+  background-color: rgb(103, 218, 103);
   font-size: 15px;
   color: white;
   padding: 4px;
@@ -90,4 +96,25 @@ p {
 
 .danger {
   background-color: #c44;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 6px;
+}
+
+li:hover {
+  background-color: #ddd;
+  border-radius: 8px;
+}
+
+.listBtn {
+  float: right;
+  margin: 0 0 0 4px;
+  position: relative;
+  bottom: 3px;
 }

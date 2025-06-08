@@ -4,8 +4,6 @@ var authFormTitle = document.getElementById('authFormTitle')
 var register = document.getElementById('register')
 var access = document.getElementById('access')
 var loading = document.getElementById('loading')
-
-
 var auth = document.getElementById('auth')
 var userContent = document.getElementById('userContent')
 var userEmail = document.getElementById('userEmail')
@@ -14,6 +12,10 @@ var emailVerified = document.getElementById('emailVerified')
 var passwordReset = document.getElementById('passwordReset')
 var userName = document.getElementById('userName')
 var userImg = document.getElementById('userImg')
+var webForm = document.getElementById('webForm')
+var webCount = document.getElementById('webCount')
+var ulWebList = document.getElementById('ulWebList')
+
 
 // Aulterar o formulário de autenticação para o cadastro de novas contas
 function toggleToRegister() {
@@ -22,6 +24,7 @@ function toggleToRegister() {
   hideItem(register) // Esconder atalho para cadastrar conta
   hideItem(passwordReset) // Esconder opção de  redifinição de  senha
   showItem(access) // Mosttar atalho para acessar conta
+  
 }
 
 // Aulterar o formulário de autenticação para o acesso de contas já existentes
@@ -30,7 +33,8 @@ function toggleToAccess() {
   authFormTitle.innerHTML = 'Acesse sua conta para continuar'
   hideItem(access) // Esconder atalho para acessar conta
   showItem(passwordReset) // Mostrar a opção de redefinir senha
-  showItem(register) // Mostar atalho para para cadastrar conta
+  showItem(register) // Mostar atalho para cadastrar conta
+  
 }
 
 // Simplifica a exibição de elementos da página
@@ -64,6 +68,10 @@ function showUserContent(user) {
   userName.innerHTML = user.displayName
   userEmail.innerHTML = user.email
   hideItem(auth)
+
+  dbRefUsers.child(firebase.auth().currentUser.uid).on('value', function (dataSnapshot) {
+    fillWebList(dataSnapshot)
+  })
   showItem(userContent)
 
 }
@@ -74,6 +82,7 @@ function showAuth() {
   authForm.password.value = ''
   hideItem(userContent)
   showItem(auth)
+  hideItem(company)
 }
 
 // Centralizar e traduzir erros
@@ -82,18 +91,18 @@ function showError(prefix, error) {
   hideItem(loading)
   switch (error.code) {
     case 'auth/invalid-email': alert(prefix + '' + 'E-mail inválido!')
-    break;
+      break;
     case 'auth/wrong-password': alert(prefix + '' + 'Campo senha obrigatório!')
-    break;
+      break;
     case 'auth/internal-error': alert(prefix + '' + 'Senha inválida')
-    break;
+      break;
     case 'auth/weak-password': alert(prefix + '' + 'A senha precisa ter ao menos 6 caracteres!')
-    break;
+      break;
     case 'auth/email-already-in-use': alert(prefix + '' + 'O e-mail ja cadastrado!')
-    break;
+      break;
     case 'auth/popup-closed-by-user': alert(prefix + '' + 'A tela de popup foi fechada antes da autenticação ser concluída!')
-    break;
-     
+      break;
+
     default: alert(prefix + '' + error.message)
   }
 }
@@ -101,4 +110,9 @@ function showError(prefix, error) {
 // Atributos extras de configuração de email
 var actionCodeSttings = {
   url: 'https://webtrack-8ff15.firebaseapp.com'
+  //url: 'http://127.0.0.1:5501/'
+
 }
+
+var database = firebase.database()
+var dbRefUsers = database.ref('users')
