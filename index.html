@@ -25,14 +25,14 @@
 
         <!--Formulário de autenticação-->
         <form id="authform">
-          <h2>Sistema de Rastreiro Web Tracker</h2>
+          <h2>Sistema de Rastreio Web Tracker</h2>
           <h3 id="authFormTitle">Acesse sua conta para continuar</h3>
           <label for="email">E-mail: </label>
           <input type="email" placeholder="Informe seu email" id="email">
 
           <label for="password">Senha: </label>
           <input type="password" placeholder="Digite sua senha" id="password">
-          
+
           <button type="submit" id="submitAuthForm">Acessar</button>
         </form>
 
@@ -61,6 +61,7 @@
 
 
     <!--Conteúdo destinado para usuários autenticados-->
+
     <di id="userContent" class="startHidden">
       <hr>
       <div id="userInfo" class="center">
@@ -78,8 +79,12 @@
 
       <hr>
       <!--Lista de tarefas do usuário-->
-      <div id="webLIst">
-        <h3 id="webCount">Carregando Informações...</h3>
+      <div id="webList">
+        <h3 id="webCount">Carregando Registro...</h3>
+        <div class="center">
+          <label for="search">Buscar: </label>
+          <input type="text" placeholder="Buscar" id="search">
+        </div>
         <ul id="ulWebList"></ul>
       </div>
 
@@ -95,6 +100,10 @@
           <input type="text" id="registration" placeholder="Digite sua matricula">
           <label for="task">Tarefas: </label>
           <input type="text" id="task" placeholder="Informe a tarefa">
+          <label for="prop">Propriedade: </label>
+          <input type="text" id="prop" placeholder="Informe a propriedade">
+          <label for="equip">Equipamentos: </label>
+          <input type="text" id="equip" placeholder="Informe o equipamento">
           <button type="submit" id="submitwebFormTask">Registrar Usuário</button>
         </form>
     </di>

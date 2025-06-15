@@ -98,8 +98,8 @@ function updateUserName() {
 
 // Função que permite mover conta de usuários
 function deleUserAccout() {
-  var confimation = confirm('Deseja realmente desativar o usuário?')
-  if (confimation) {
+  var confirmation = confirm('Deseja realmente desativar o usuário?')
+  if (confirmation) {
     showItem(loading)
     firebase.auth().currentUser.delete().then(function () {
       alert('Conta excluida com sucesso.')

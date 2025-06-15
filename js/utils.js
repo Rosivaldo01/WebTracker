@@ -15,7 +15,7 @@ var userImg = document.getElementById('userImg')
 var webForm = document.getElementById('webForm')
 var webCount = document.getElementById('webCount')
 var ulWebList = document.getElementById('ulWebList')
-
+var search = document.getElementById('search')
 
 // Aulterar o formulário de autenticação para o cadastro de novas contas
 function toggleToRegister() {
@@ -69,12 +69,32 @@ function showUserContent(user) {
   userEmail.innerHTML = user.email
   hideItem(auth)
 
-  dbRefUsers.child(firebase.auth().currentUser.uid).on('value', function (dataSnapshot) {
+  getDefaultUserList()
+  search.onkeyup = function() {
+    if(search.value != '') {
+     
+      dbRefUsers.child(user.uid)
+      .orderByChild('name')// Ordena os usuários com base no mome
+      .startAt(search.value).endAt(search.value +'\uf8ff')// Delimita os resultados da pesquisa
+      .once('value').then (function (dataSnapshot) {  // busca usuarios filtrados somente um vez(once)
     fillWebList(dataSnapshot)
   })
+    } else {
+      getDefaultUserList()
+    }
+  }
   showItem(userContent)
-
 }
+
+// Busca usuário em tempo real (listagem padrão usando o on)
+function getDefaultUserList() {
+  dbRefUsers.child(firebase.auth().currentUser.uid)
+  .orderByChild('name')// Ordena os usuários com base no mome
+  .on('value', function (dataSnapshot) {
+    fillWebList(dataSnapshot)
+  })
+}
+
 
 // Mostrar conteúdo para usuários não autenticados
 function showAuth() {
@@ -82,7 +102,7 @@ function showAuth() {
   authForm.password.value = ''
   hideItem(userContent)
   showItem(auth)
-  hideItem(company)
+
 }
 
 // Centralizar e traduzir erros
@@ -101,6 +121,8 @@ function showError(prefix, error) {
     case 'auth/email-already-in-use': alert(prefix + '' + 'O e-mail ja cadastrado!')
       break;
     case 'auth/popup-closed-by-user': alert(prefix + '' + 'A tela de popup foi fechada antes da autenticação ser concluída!')
+      break;
+    case 'PERMISSION_DENIED': alert(prefix + '' + ' Nome do Usuário não pode ter mais que 50 caractéres!')
       break;
 
     default: alert(prefix + '' + error.message)
